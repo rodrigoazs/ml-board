@@ -19,6 +19,20 @@
 
     <!-- Custom styles for this template-->
     <link href="css/sb-admin-2.css" rel="stylesheet">
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+
+    <style>
+        /* Container style to make chart responsive */
+        #myAreaChart2 {
+            /* border: 2px solid black; Add border around the chart */
+            /* padding: 10px; */
+            /* width: 100%; */
+            height: 100%;
+            /* max-width: 800px; Maximum width */
+            /* height: auto; */
+            /* margin: auto; Center the chart */
+        }
+    </style>
 
 </head>
 
@@ -58,37 +72,18 @@
 
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
-                    aria-expanded="true" aria-controls="collapseTwo">
+                <a class="nav-link collapsed" href="#">
                     <i class="fas fa-fw fa-cog"></i>
                     <span>Components</span>
                 </a>
-                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Custom Components:</h6>
-                        <a class="collapse-item" href="buttons.html">Buttons</a>
-                        <a class="collapse-item" href="cards.html">Cards</a>
-                    </div>
-                </div>
             </li>
 
             <!-- Nav Item - Utilities Collapse Menu -->
             <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
-                    aria-expanded="true" aria-controls="collapseUtilities">
+                <a class="nav-link collapsed" href="#">
                     <i class="fas fa-fw fa-wrench"></i>
                     <span>Utilities</span>
                 </a>
-                <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
-                    data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Custom Utilities:</h6>
-                        <a class="collapse-item" href="utilities-color.html">Colors</a>
-                        <a class="collapse-item" href="utilities-border.html">Borders</a>
-                        <a class="collapse-item" href="utilities-animation.html">Animations</a>
-                        <a class="collapse-item" href="utilities-other.html">Other</a>
-                    </div>
-                </div>
             </li>
 
             <!-- Divider -->
@@ -524,6 +519,186 @@
                                         <span class="mr-2">
                                             <i class="fas fa-circle text-info"></i> Referral
                                         </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+
+                        <!-- Area Chart -->
+                        <div class="col-xl-8 col-lg-7">
+                            <div class="card shadow mb-4">
+                                <!-- Card Header - Dropdown -->
+                                <div
+                                    class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                    <h6 class="m-0 font-weight-bold text-primary">Earnings Overview</h6>
+                                    <div class="dropdown no-arrow">
+                                        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                                        </a>
+                                        <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
+                                            aria-labelledby="dropdownMenuLink">
+                                            <div class="dropdown-header">Dropdown Header:</div>
+                                            <a class="dropdown-item" href="#">Action</a>
+                                            <a class="dropdown-item" href="#">Another action</a>
+                                            <div class="dropdown-divider"></div>
+                                            <a class="dropdown-item" href="#">Something else here</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Card Body -->
+                                <div class="card-body">
+                                    <div class="chart-area">
+                                        <div id="myAreaChart2"></div>
+                                        <script>
+                                            // Data for the line chart
+                                            var trace = {
+                                                x: [1, 2, 3, 4, 5],
+                                                y: [10, 11, 12, 13, 14],
+                                                mode: 'lines',
+                                                type: 'scatter',
+                                                name: 'Model A'
+                                            };
+
+                                            var trace2 = {
+                                                x: [1, 2, 3, 4, 5],
+                                                y: [5, 1, 8, 19, 14],
+                                                mode: 'lines',
+                                                type: 'scatter',
+                                                name: 'Model B'
+                                            };
+
+                                            var trace3 = {
+                                                x: [1, 2, 3, 4, 5],
+                                                y: [1, 2, 5, 59, 10],
+                                                mode: 'lines',
+                                                type: 'scatter',
+                                                name: 'Model C'
+                                            };
+                                    
+                                            var data = [trace, trace2, trace3];
+                                    
+                                            var layout = {
+                                                // xaxis: {
+                                                //     title: 'X Axis'
+                                                // },
+                                                // yaxis: {
+                                                //     title: 'Y Axis'
+                                                // },
+                                                xaxis: {
+                                                    showline: false,
+                                                    gridcolor: 'rgba(0,0,0,0)',
+                                                },
+                                                yaxis: {
+                                                    gridwidth: 0
+                                                },
+                                                margin: {
+                                                    l: 25,  // Left margin
+                                                    r: 0,  // Right margin
+                                                    t: 0,  // Top margin
+                                                    b: 25,   // Bottom margin
+                                                },
+                                                legend: {
+                                                    orientation: 'h', 
+                                                    x: 0.5, 
+                                                    xanchor: 'center', 
+                                                }
+                                            };
+
+                                            var config = {
+                                                displayModeBar: false // Hide the mode bar
+                                            };
+                                    
+                                            Plotly.newPlot('myAreaChart2', data, layout, config);
+
+                                            // Make chart responsive
+                                            window.addEventListener('resize', function() {
+                                                Plotly.Plots.resize(document.getElementById('myAreaChart2'));
+                                            });
+                                        </script>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Pie Chart -->
+                        <div class="col-xl-4 col-lg-5">
+                            <div class="card shadow mb-4">
+                                <!-- Card Header - Dropdown -->
+                                <div
+                                    class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                    <h6 class="m-0 font-weight-bold text-primary">Revenue Sources</h6>
+                                    <div class="dropdown no-arrow">
+                                        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                                        </a>
+                                        <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
+                                            aria-labelledby="dropdownMenuLink">
+                                            <div class="dropdown-header">Dropdown Header:</div>
+                                            <a class="dropdown-item" href="#">Action</a>
+                                            <a class="dropdown-item" href="#">Another action</a>
+                                            <div class="dropdown-divider"></div>
+                                            <a class="dropdown-item" href="#">Something else here</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Card Body -->
+                                <div class="card-body">
+                                    <div class="chart-pie pt-4 pb-2">
+                                        <div id="myPieChart2"></div>
+                                        <script>
+                                            // Example confusion matrix data
+                                            var confusionMatrix = [
+                                                [25, 5,],
+                                                [3, 30],
+                                                [0, 1]
+                                            ];
+                                    
+                                            // Heatmap trace for the confusion matrix
+                                            var trace = {
+                                                z: confusionMatrix,  // Matrix data
+                                                x: ['Class 1', 'Class 2'], // Column labels
+                                                y: ['Class 1', 'Class 2'], // Row labels
+                                                type: 'heatmap',      // Use heatmap type for matrix representation
+                                                colorscale: 'Viridis', // Color scale for the heatmap
+                                                colorbar: {
+                                                    title: 'Count'   // Title for the color bar
+                                                }
+                                            };
+                                    
+                                            var data = [trace];
+                                    
+                                            var layout = {
+                                                xaxis: {
+                                                    title: 'Predicted Label',
+                                                },
+                                                yaxis: {
+                                                    title: 'True Label',
+                                                },
+                                                margin: {
+                                                    l: 25,  // Left margin
+                                                    r: 0,  // Right margin
+                                                    t: 0,  // Top margin
+                                                    b: 25,   // Bottom margin
+                                                }
+                                            };
+                                    
+                                            var config = {
+                                                displayModeBar: false // Hide the mode bar
+                                            };
+                                    
+                                            // Create the chart
+                                            Plotly.newPlot('myPieChart2', data, layout, config);
+
+                                            // Make chart responsive
+                                            window.addEventListener('resize', function() {
+                                                Plotly.Plots.resize(document.getElementById('myPieChart2'));
+                                            });
+                                        </script>
                                     </div>
                                 </div>
                             </div>
